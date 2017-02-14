@@ -17,8 +17,8 @@ package cmd
 import (
 	"log"
 
-	"github.com/sascha-andres/go-templating/app"
-	"github.com/sascha-andres/go-templating/data"
+	"github.com/sascha-andres/go-snippet/app"
+	"github.com/sascha-andres/go-snippet/data"
 	"github.com/spf13/cobra"
 )
 

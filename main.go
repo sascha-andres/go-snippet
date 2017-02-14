@@ -14,7 +14,7 @@
 
 package main
 
-import "github.com/sascha-andres/go-templating/cmd"
+import "github.com/sascha-andres/go-snippet/cmd"
 
 func main() {
 	cmd.Execute()
