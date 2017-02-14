@@ -46,11 +46,11 @@ func Execute() {
 
 func init() {
 	cobra.OnInitialize(initConfig)
-	RootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.go-templating.yaml)")
+	RootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.go-snippet.yaml)")
 	RootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 
-	RootCmd.PersistentFlags().StringP("templatedir", "d", "", "Where are the snippets stored")
-	viper.BindPFlag("templatedir", RootCmd.PersistentFlags().Lookup("templatedir"))
+	RootCmd.PersistentFlags().StringP("snippetdir", "s", "", "Where are the snippets stored")
+	viper.BindPFlag("snippetdir", RootCmd.PersistentFlags().Lookup("snippetdir"))
 	RootCmd.PersistentFlags().BoolP("verbose", "v", false, "Verbose output")
 	viper.BindPFlag("verbose", RootCmd.PersistentFlags().Lookup("verbose"))
 	RootCmd.PersistentFlags().String("file", "", "File to push snippets to")
@@ -63,9 +63,9 @@ func initConfig() {
 		viper.SetConfigFile(cfgFile)
 	}
 
-	viper.SetConfigName(".go-templating") // name of config file (without extension)
-	viper.AddConfigPath("$HOME")          // adding home directory as first search path
-	viper.AutomaticEnv()                  // read in environment variables that match
+	viper.SetConfigName(".go-snippet") // name of config file (without extension)
+	viper.AddConfigPath("$HOME")       // adding home directory as first search path
+	viper.AutomaticEnv()               // read in environment variables that match
 
 	// If a config file is found, read it in.
 	if err := viper.ReadInConfig(); err == nil {
