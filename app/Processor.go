@@ -14,7 +14,11 @@ var (
 
 // Processor parses a file for marks and replaces them with the snippet value
 func Processor(snippetMarker data.SnippetMarker) error {
-	checkExistence(viper.GetString("templatedir"))
+	if viper.GetBool("verbose") {
+		log.Printf("Snippet directory: '%s'", viper.GetString("snippetdir"))
+		log.Printf("File: '%s'", viper.GetString("file"))
+	}
+	checkExistence(viper.GetString("snippetdir"))
 	checkExistence(viper.GetString("file"))
 	snippetRegexp = regexp.MustCompile(string(snippetMarker))
 	var (

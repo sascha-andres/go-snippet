@@ -12,7 +12,7 @@ func getSnippetContent(snippet string) (string, error) {
 	if viper.GetBool("verbose") {
 		log.Printf("getSnippetContent: '%s'\n", snippet)
 	}
-	path := fmt.Sprintf("%s/%s", viper.GetString("templatedir"), snippet)
+	path := fmt.Sprintf("%s/%s", viper.GetString("snippetdir"), snippet)
 	if ok, err := exists(path); !ok || err != nil {
 		return "", fmt.Errorf("'%s' does not exist", snippet)
 	}
