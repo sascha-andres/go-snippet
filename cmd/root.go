@@ -27,16 +27,12 @@ var cfgFile string
 // RootCmd represents the base command when called without any subcommands
 var RootCmd = &cobra.Command{
 	Use:   "go-templating",
-	Short: "A brief description of your application",
-	Long: `A longer description that spans multiple lines and likely contains
-examples and usage of using your application. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
-// Uncomment the following line if your bare application
-// has an action associated with it:
-//	Run: func(cmd *cobra.Command, args []string) { },
+	Short: "Push snippets into files",
+	Long: `You can use this tool to push snippets into files
+of your choice. Redo this to update the snippet.`,
+	// Uncomment the following line if your bare application
+	// has an action associated with it:
+	//	Run: func(cmd *cobra.Command, args []string) { },
 }
 
 // Execute adds all child commands to the root command sets flags appropriately.
@@ -50,15 +46,15 @@ func Execute() {
 
 func init() {
 	cobra.OnInitialize(initConfig)
-
-	// Here you will define your flags and configuration settings.
-	// Cobra supports Persistent Flags, which, if defined here,
-	// will be global for your application.
-
 	RootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.go-templating.yaml)")
-	// Cobra also supports local flags, which will only run
-	// when this action is called directly.
 	RootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+
+	RootCmd.PersistentFlags().StringP("templatedir", "d", "", "Where are the snippets stored")
+	viper.BindPFlag("templatedir", RootCmd.PersistentFlags().Lookup("templatedir"))
+	RootCmd.PersistentFlags().BoolP("verbose", "v", false, "Verbose output")
+	viper.BindPFlag("verbose", RootCmd.PersistentFlags().Lookup("verbose"))
+	RootCmd.PersistentFlags().String("file", "", "File to push snippets to")
+	viper.BindPFlag("file", RootCmd.PersistentFlags().Lookup("file"))
 }
 
 // initConfig reads in config file and ENV variables if set.
@@ -68,8 +64,8 @@ func initConfig() {
 	}
 
 	viper.SetConfigName(".go-templating") // name of config file (without extension)
-	viper.AddConfigPath("$HOME")  // adding home directory as first search path
-	viper.AutomaticEnv()          // read in environment variables that match
+	viper.AddConfigPath("$HOME")          // adding home directory as first search path
+	viper.AutomaticEnv()                  // read in environment variables that match
 
 	// If a config file is found, read it in.
 	if err := viper.ReadInConfig(); err == nil {
