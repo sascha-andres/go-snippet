@@ -37,5 +37,8 @@ func Processor(snippetMarker data.SnippetMarker) error {
 			log.Printf("%d: %#v\n", i, mark)
 		}
 	}
+	if 0 == len(marker) {
+		return nil
+	}
 	return saveFile(content, marker)
 }
