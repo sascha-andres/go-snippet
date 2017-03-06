@@ -1,5 +1,6 @@
 # go-snippet
 
+[![Go Report Card](https://goreportcard.com/badge/github.com/sascha-andres/go-snippet)](https://goreportcard.com/report/github.com/sascha-andres/go-snippet) [![codebeat badge](https://codebeat.co/badges/7fc9e22e-807e-4742-b129-d6062397beef)](https://codebeat.co/projects/github-com-sascha-andres-go-snippet) 
 ## What is go-snippet?
 
 You can define snippets which are inserted at files at places you want them to be.
