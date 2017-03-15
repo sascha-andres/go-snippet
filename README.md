@@ -64,3 +64,9 @@ Run the tooling again and you get:
     #### header.sh ###
 
     header "Hello world!"
+
+## History
+
+|Version|Description|
+|---|---|
+|v1.0.0|Initial release|
