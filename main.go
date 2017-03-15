@@ -14,8 +14,17 @@
 
 package main
 
-import "github.com/sascha-andres/go-snippet/cmd"
+import (
+	"log"
+
+	"github.com/google/gops/agent"
+	"github.com/sascha-andres/go-snippet/cmd"
+)
 
 func main() {
+	if err := agent.Listen(nil); err != nil {
+		log.Fatal(err)
+	}
+
 	cmd.Execute()
 }
